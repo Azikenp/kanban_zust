@@ -17,7 +17,13 @@ const Column = ({ state }) => {
   const addTask = useStore((store) => store.addTask);
 
   return (
-    <div className="column">
+    <div
+      className="column"
+      onDragOver={(e) => {
+        e.preventDefault();
+      }}
+      onDrop={() => console.log("dropped")}
+    >
       <div className="titleWrapper">
         <p>{state}</p>
         <button

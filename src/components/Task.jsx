@@ -7,11 +7,15 @@ const Task = ({ title }) => {
     store.tasks.find((task) => task.title === title)
   );
 
+  const deleteTask = useStore((store) => store.deleteTask);
+
   return (
-    <div className="task">
+    <div className="task" draggable>
       <div>{task.title}</div>
       <div className="bottomWrapper">
-        <div></div>
+        <div>
+          <p onClick={() => deleteTask(task.title)}>X</p>
+        </div>
         <div className={classNames("status", task.state)}>{task.state}</div>
       </div>
     </div>

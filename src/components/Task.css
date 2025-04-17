@@ -8,11 +8,13 @@
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 10px;
+  cursor: move;
 }
 
 .bottomWrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .status {
@@ -30,4 +32,10 @@
 }
 .DONE {
   background: var(--COLOR-DONE);
+}
+
+.task p {
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 700;
 }
