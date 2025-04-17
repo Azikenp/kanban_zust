@@ -1,9 +1,7 @@
+import "./Column.css";
 
+const Column = ({ state }) => {
+  return <div className="column">{state}</div>;
+};
 
-const Column = ({state}) => {
-  return (
-    <div>Column</div>
-  )
-}
-
-export default Column
+export default Column;
