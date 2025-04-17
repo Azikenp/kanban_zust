@@ -1,15 +1,13 @@
 import classNames from "classnames";
 import "./Task.css";
 
-const STATUS = "PLANNED";
-
-const Task = ({ title }) => {
+const Task = ({ title, state }) => {
   return (
     <div className="task">
       <div>{title}</div>
       <div className="bottomWrapper">
         <div></div>
-        <div className={classNames("status", STATUS)}>{STATUS}</div>
+        <div className={classNames("status", state)}>{state}</div>
       </div>
     </div>
   );
