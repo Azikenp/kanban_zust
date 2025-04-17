@@ -5,6 +5,7 @@ import Task from "./Task";
 
 const Column = ({ state }) => {
   const tasks = useStore((store) => store.tasks);
+  const addTask = useStore((store) => store.addTask);
 
   const filteredTasks = useMemo(
     () => tasks.filter((task) => task.state === state),
@@ -13,7 +14,17 @@ const Column = ({ state }) => {
 
   return (
     <div className="column">
-      <p>{state}</p>
+      <div className="titleWrapper">
+        <p>{state}</p>
+        <button
+          onClick={() => {
+            addTask("hello" + state, state);
+          }}
+        >
+          Add
+        </button>
+      </div>
+
       {filteredTasks.map((task, index) => (
         <Task key={index} title={task.title} state={task.state} />
       ))}
