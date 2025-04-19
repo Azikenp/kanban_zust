@@ -6,6 +6,7 @@ import Task from "./Task";
 const Column = ({ state }) => {
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
+  const [drop, setDrop] = useState(false);
 
   const tasks = useStore((store) => store.tasks);
 
@@ -14,15 +15,24 @@ const Column = ({ state }) => {
     [tasks, state]
   );
 
+  const setDraggedTask = useStore((store) => store.setDraggedTask);
+  const moveTask = useStore((store) => store.moveTask);
+  const draggedTask = useStore((store) => store.draggedTask);
   const addTask = useStore((store) => store.addTask);
 
   return (
     <div
       className="column"
       onDragOver={(e) => {
+        setDrop((prev) => !prev);
         e.preventDefault();
       }}
-      onDrop={() => console.log("dropped")}
+      onDragLeave={() => setDrop((prev) => !prev)}
+      onDrop={() => {
+        console.log(draggedTask);
+        setDraggedTask(null);
+        moveTask(draggedTask, state);
+      }}
     >
       <div className="titleWrapper">
         <p>{state}</p>
