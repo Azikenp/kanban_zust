@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { devtools } from "zustand/middleware";
 
 const store = (set) => ({
   tasks: [{ title: "TestTask", state: "PLANNED" }],
@@ -18,4 +19,4 @@ const store = (set) => ({
     })),
 });
 
-export const useStore = create(store);
+export const useStore = create(devtools(store));

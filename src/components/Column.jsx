@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useStore } from "../store";
 import "./Column.css";
 import Task from "./Task";
+import classNames from "classnames";
 
 const Column = ({ state }) => {
   const [text, setText] = useState("");
@@ -22,14 +23,17 @@ const Column = ({ state }) => {
 
   return (
     <div
-      className="column"
+      className={classNames("column", {drop: drop})}
       onDragOver={(e) => {
-        setDrop((prev) => !prev);
+        setDrop(true);
         e.preventDefault();
       }}
-      onDragLeave={() => setDrop((prev) => !prev)}
+      onDragLeave={(e) => {
+        setDrop(false);
+        e.preventDefault();
+      }}
       onDrop={() => {
-        console.log(draggedTask);
+        setDrop(false);
         setDraggedTask(null);
         moveTask(draggedTask, state);
       }}
